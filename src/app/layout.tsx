@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { yekan } from "@/utils/font";
 
 
 import "./globals.css";
 import Layout from "@/layout/Layout";
+import { yekan } from "@/utils/font";
 
 
 

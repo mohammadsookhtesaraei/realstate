@@ -7,7 +7,6 @@
 
 @theme inline {
   --color-blue-main: var(--background);
- 
   --font-sans: var(--font-yekan);
 
 }
@@ -20,6 +19,7 @@ body {
   overflow-x: hidden;
   margin: auto;
   padding-inline:0.625rem;
+  font-family: var(--font-yekan), sans-serif;
 }
 
 a {
