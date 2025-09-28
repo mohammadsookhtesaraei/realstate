@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { FaUserAlt } from 'react-icons/fa';
 import { FiLogIn } from 'react-icons/fi';
 
-
-
 function Header() {
   return (
     <header className="bg-blue-main my-5 flex items-center justify-between rounded-xl p-5 font-extralight text-white">
