@@ -1,24 +1,21 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background:#304ffe;
+  --background: #304ffe;
   --foreground: #171717;
 }
 
 @theme inline {
   --color-blue-main: var(--background);
   --font-sans: var(--font-yekan);
-
 }
-
-
 
 html,
 body {
-  inline-size: min(75rem,100%);
+  inline-size: min(75rem, 100%);
   overflow-x: hidden;
   margin: auto;
-  padding-inline:0.625rem;
+  padding-inline: 0.625rem;
   font-family: var(--font-yekan), sans-serif;
 }
 

@@ -20,7 +20,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-     "@/public/*": ["public/*"],
+      "@/public/*": ["public/*"],
       "@/app/*": ["src/app/*"],
       "@/utils/*": ["src/utils/*"],
       "@/models/*": ["src/models/*"],
@@ -32,6 +32,12 @@
       "@/constants/*": ["src/constants/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","global.d.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "global.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

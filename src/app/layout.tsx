@@ -1,16 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
+import Layout from '@/layout/Layout';
+import { yekan } from '@/utils/font';
 
-import "./globals.css";
-import Layout from "@/layout/Layout";
-import { yekan } from "@/utils/font";
-
-
-
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "real state",
-  description: "rent house",
+  title: 'real state',
+  description: 'rent house',
 };
 
 export default function RootLayout({
@@ -20,12 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body
-        className={`${yekan.variable}`}
-      >
-        <Layout>
-        {children}
-        </Layout>
+      <body className={`${yekan.variable}`}>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
