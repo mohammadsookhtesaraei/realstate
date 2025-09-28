@@ -11,7 +11,7 @@ const Layout = ({children}:LayoutProps) => {
   return (
     <>
     <Header/>
-    {children}
+     <div className="min-h-[43.75rem]">{children}</div>
     <Footer/>
     </>
   )
