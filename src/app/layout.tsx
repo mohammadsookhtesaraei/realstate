@@ -4,6 +4,7 @@ import Layout from '@/layout/Layout';
 import { yekan } from '@/utils/font';
 
 import './globals.css';
+import NextAuthProvider  from '@/providers/NextAuthProvider';
 
 export const metadata: Metadata = {
   title: 'real state',
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body className={`${yekan.variable}`}>
-        <Layout>{children}</Layout>
+        <NextAuthProvider>
+         <Layout>{children}</Layout>
+        </NextAuthProvider>
       </body>
     </html>
   );
