@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 
 import Loader from '@/module/Loader';
@@ -15,7 +15,7 @@ function SignupPage() {
 
   const router = useRouter();
 
-  const signupHandler = async (e: MouseEvent<HTMLButtonElement>) => {
+  const signupHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (password !== rePassword) {

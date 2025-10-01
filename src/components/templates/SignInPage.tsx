@@ -3,7 +3,7 @@
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 
 import Loader from '@/module/Loader';
@@ -16,7 +16,7 @@ function SignInPage() {
 
   const router = useRouter();
 
-  const signinHandler = async (e: MouseEvent<HTMLButtonElement>) => {
+  const signinHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     setLoading(true);
