@@ -1,14 +1,11 @@
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/api/auth/[...nextauth]/route';
 import { redirect } from 'next/navigation';
-
-
 import SingUpPage from 'src/components/templates/SingUpPage';
 
+import { authOptions } from '@/api/auth/[...nextauth]/route';
 
-
-export default  async function SignUp() {
+export default async function SignUp() {
   const session = await getServerSession(authOptions);
-if (session) redirect('/');
+  if (session) redirect('/');
   return <SingUpPage />;
 }
