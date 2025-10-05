@@ -34,7 +34,7 @@ const DashboardSideBar = ({
         <LogoutButton />
         {role === 'ADMIN' ? <Link href="/admin">در انتظار تایید</Link> : null}
       </div>
-      <div className="w-full bg-red-700">{children}</div>
+      <div className="w-full">{children}</div>
     </div>
   );
 };
