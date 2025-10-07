@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import TextInput from "@/module/TextInput";
+import RadioList from "@/module/RadioList";
 
 export interface ProfileDataType {
     title: string;
@@ -76,6 +77,7 @@ const AddProfilePage = () => {
         profileData={profileData}
         setProfileData={setProfileData}
       />
+      <RadioList  profileData={profileData} setProfileData={setProfileData}/>
 
       <button onClick={submitHandler}>ثبت آگهی</button>
 
