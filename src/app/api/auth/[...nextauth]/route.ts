@@ -17,42 +17,35 @@ export const authOptions: AuthOptions = {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error('لطفا اطلاعات معتبر وارد کنید');
-        }
-        const { email, password } = credentials;
-
+       async authorize(credentials) {
         try {
-          await connectDB();
-        } catch (error) {
-          if (error instanceof Error) {
-            console.error('Database connection error:', error.message);
+          if (!credentials?.email || !credentials?.password) {
+            throw new Error("لطفا ایمیل و رمز عبور را وارد کنید");
           }
-          throw new Error('خطای سرور. لطفا دوباره تلاش کنید.');
+
+          // اتصال به دیتابیس یکبار
+          await connectDB();
+
+          const user = await User.findOne({ email: credentials.email });
+          if (!user) {
+            throw new Error("حساب کاربری یافت نشد. لطفا ثبت نام کنید");
+          }
+
+          const isValid = await verifyPassword(credentials.password, user.password);
+          if (!isValid) {
+            throw new Error("ایمیل یا رمز عبور اشتباه است");
+          }
+
+          return {
+            id: user._id,
+            email: user.email,
+          };
+        } catch (error: unknown) {
+          console.error("Auth Error:", error instanceof Error ? error.message : error);
+          return null; // برگردوندن null یعنی لاگین ناموفق
         }
-
-        if (!email || !password) {
-          throw new Error('لطفا اطلاعات معتبر وارد کنید');
-        }
-
-        const user = await User.findOne({ email });
-
-        if (!user) {
-          throw new Error('لطفا حساب کاربری ایجاد کنید');
-        }
-
-        const isValid = await verifyPassword(password, user.password);
-
-        if (!isValid) {
-          throw new Error('نام کاربری یا رمز عبور اشتباه است');
-        }
-
-        return {
-          id: user._id,
-          email: user.email,
-        };
       },
+
     }),
   ],
 };
