@@ -28,15 +28,18 @@ const TextInput = ({
   };
   return (
     <div>
-      <p>{title}</p>
+      <p className="text-md mb-1.5">{title}</p>
       {textarea ? (
-        <textarea name={name} value={value} onChange={changeHandler} />
+        <textarea
+        className='mb-10 w-[300px] border border-dashed border-blue-main text-gray-400 rounded-md p-2.5 text-lg h-28 focus:outline-none focus:border-solid'
+         name={name} value={value} onChange={changeHandler} />
       ) : (
         <input
           type={profileData[name] instanceof Date ? 'date' : 'text'}
           name={name}
           value={value}
           onChange={changeHandler}
+          className='mb-10 w-[300px] border border-dashed border-blue-main text-gray-400 rounded-md p-2.5 text-lg h-10 focus:outline-none focus:border-solid'
         />
       )}
     </div>
