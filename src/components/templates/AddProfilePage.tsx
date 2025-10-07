@@ -1,59 +1,61 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import TextInput from "@/module/TextInput";
-import RadioList from "@/module/RadioList";
+import { useState } from 'react';
+
+import RadioList from '@/module/RadioList';
+import TextInput from '@/module/TextInput';
+import TextList from '@/module/TextList';
 
 export interface ProfileDataType {
-    title: string;
-    description: string;
-    location: string;
-    phone: string;
-    price: string;
-    realState: string;
-    constructionDate: Date;
-    category: string;
-    rules: never[];
-    amenities: never[];
+  title: string;
+  description: string;
+  location: string;
+  phone: string;
+  price: string;
+  realState: string;
+  constructionDate: Date;
+  category: string;
+  rules: never[];
+  amenities: never[];
 }
 
-
-
 const AddProfilePage = () => {
-    const [profileData,setProfileData]=useState<ProfileDataType>({
-     title:"",
-     description:"",
-     location:"",
-     phone:"",
-     price:"",
-     realState:"",
-     constructionDate: new Date(),
-    category: "",
+  const [profileData, setProfileData] = useState<ProfileDataType>({
+    title: '',
+    description: '',
+    location: '',
+    phone: '',
+    price: '',
+    realState: '',
+    constructionDate: new Date(),
+    category: '',
     rules: [],
     amenities: [],
-    });
+  });
 
-    const submitHandler=()=>{
-      console.log(profileData);
-    }
+  const submitHandler = () => {
+    console.log(profileData);
+  };
 
   return (
-    <div className="flex flex-col mb-[150px]">
-      <h3 className="text-2xl font-normal mb-20 w-full bg-dashboard text-blue-main rounded-lg py-2.5 px-4">ثبت آگهی</h3>
+    <div className="mb-[150px] flex flex-col">
+      <h3 className="bg-dashboard text-blue-main mb-20 w-full rounded-lg px-4 py-2.5 text-2xl font-normal">
+        ثبت آگهی
+      </h3>
       <TextInput
-      title="عنوان آگهی"
-      name="title"
-      profileData={profileData}
-      setProfileData={setProfileData}
+        title="عنوان آگهی"
+        name="title"
+        profileData={profileData}
+        setProfileData={setProfileData}
       />
       <TextInput
-      title="توضیحات"
-      name="description"
-      profileData={profileData}
-      setProfileData={setProfileData}
-      textarea={true}
+        title="توضیحات"
+        name="description"
+        profileData={profileData}
+        setProfileData={setProfileData}
+        textarea={true}
       />
-            <TextInput
+      <TextInput
         title="آدرس"
         name="location"
         profileData={profileData}
@@ -77,12 +79,28 @@ const AddProfilePage = () => {
         profileData={profileData}
         setProfileData={setProfileData}
       />
-      <RadioList  profileData={profileData} setProfileData={setProfileData}/>
+      <RadioList profileData={profileData} setProfileData={setProfileData} />
+      <TextList
+        title="امکانات رفاهی"
+        profileData={profileData}
+        setProfileData={setProfileData}
+        type="amenities"
+      />
+      <TextList
+        title="قوانین"
+        profileData={profileData}
+        setProfileData={setProfileData}
+        type="rules"
+      />
 
-      <button onClick={submitHandler}>ثبت آگهی</button>
-
+      <button
+        className="bg-blue-main cursor-pointer rounded-md border-none p-2.5 text-base text-white transition-all delay-75 ease-in hover:bg-blue-950"
+        onClick={submitHandler}
+      >
+        ثبت آگهی
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default AddProfilePage
+export default AddProfilePage;
