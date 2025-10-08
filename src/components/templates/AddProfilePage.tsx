@@ -1,11 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import Loader from "@/module/Loader";
 
-import CustomDatePicker from '@/module/CustomDatePicker';
 import RadioList from '@/module/RadioList';
 import TextInput from '@/module/TextInput';
 import TextList from '@/module/TextList';
+import CustomDatePicker from '@/module/CustomDatePicker';
+
 
 export interface ProfileDataType {
   title: string;
@@ -34,17 +37,21 @@ const AddProfilePage = () => {
     amenities: [],
   });
 
+  const [loading,setLoading]=useState(false);
+
   const submitHandler = async() => {
+    setLoading(true)
    const res=await fetch("/api/profile",{
     method:"POST",
     body:JSON.stringify(profileData),
     headers:{"Content-Type":"application/json"}
    });
    const data=await res.json();
+   setLoading(false);
    if(data.error){
-    console.log("error");
+    toast.error(data.error)
    }else {
-    console.log(data);
+     toast.success(data.message)
    }
   };
 
@@ -107,13 +114,15 @@ const AddProfilePage = () => {
         profileData={profileData}
         setProfileData={setProfileData}
       />
-
-      <button
+      <Toaster/>
+      {loading ? (<Loader/>):(
+         <button
         className="bg-blue-main cursor-pointer rounded-md border-none p-2.5 text-base text-white transition-all delay-75 ease-in hover:bg-blue-950"
         onClick={submitHandler}
       >
         ثبت آگهی
       </button>
+      )}
     </div>
   );
 };
