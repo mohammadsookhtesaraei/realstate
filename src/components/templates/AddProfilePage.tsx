@@ -34,8 +34,18 @@ const AddProfilePage = () => {
     amenities: [],
   });
 
-  const submitHandler = () => {
-    console.log(profileData);
+  const submitHandler = async() => {
+   const res=await fetch("/api/profile",{
+    method:"POST",
+    body:JSON.stringify(profileData),
+    headers:{"Content-Type":"application/json"}
+   });
+   const data=await res.json();
+   if(data.error){
+    console.log("error");
+   }else {
+    console.log(data);
+   }
   };
 
   return (
