@@ -1,12 +1,12 @@
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
+import { Types } from 'mongoose';
 import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 
-import User from '@/models/User';
 import Profile from '@/models/Profile';
+import User from '@/models/User';
 import connectDB from '@/utils/connectDB';
-import { Types } from 'mongoose';
 
 export async function POST(req: Request) {
   try {
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
       !category
     ) {
       return NextResponse.json(
-        { error: "لطفا اطلاعات معتبر وارد کنید" },
+        { error: 'لطفا اطلاعات معتبر وارد کنید' },
         { status: 400 }
       );
     }
@@ -67,11 +67,11 @@ export async function POST(req: Request) {
       rules,
       category,
       price: +price,
-      userId: user._id
+      userId: user._id,
     });
     console.log(newProfile);
     return NextResponse.json(
-      { message: "آگهی جدید اضافه شد" },
+      { message: 'آگهی جدید اضافه شد' },
       { status: 201 }
     );
   } catch (error: unknown) {

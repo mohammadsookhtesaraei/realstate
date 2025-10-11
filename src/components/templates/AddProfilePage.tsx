@@ -2,13 +2,12 @@
 
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import Loader from "@/module/Loader";
 
+import CustomDatePicker from '@/module/CustomDatePicker';
+import Loader from '@/module/Loader';
 import RadioList from '@/module/RadioList';
 import TextInput from '@/module/TextInput';
 import TextList from '@/module/TextList';
-import CustomDatePicker from '@/module/CustomDatePicker';
-
 
 export interface ProfileDataType {
   title: string;
@@ -37,22 +36,22 @@ const AddProfilePage = () => {
     amenities: [],
   });
 
-  const [loading,setLoading]=useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const submitHandler = async() => {
-    setLoading(true)
-   const res=await fetch("/api/profile",{
-    method:"POST",
-    body:JSON.stringify(profileData),
-    headers:{"Content-Type":"application/json"}
-   });
-   const data=await res.json();
-   setLoading(false);
-   if(data.error){
-    toast.error(data.error)
-   }else {
-     toast.success(data.message)
-   }
+  const submitHandler = async () => {
+    setLoading(true);
+    const res = await fetch('/api/profile', {
+      method: 'POST',
+      body: JSON.stringify(profileData),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+    setLoading(false);
+    if (data.error) {
+      toast.error(data.error);
+    } else {
+      toast.success(data.message);
+    }
   };
 
   return (
@@ -114,14 +113,16 @@ const AddProfilePage = () => {
         profileData={profileData}
         setProfileData={setProfileData}
       />
-      <Toaster/>
-      {loading ? (<Loader/>):(
-         <button
-        className="bg-blue-main cursor-pointer rounded-md border-none p-2.5 text-base text-white transition-all delay-75 ease-in hover:bg-blue-950"
-        onClick={submitHandler}
-      >
-        ثبت آگهی
-      </button>
+      <Toaster />
+      {loading ? (
+        <Loader />
+      ) : (
+        <button
+          className="bg-blue-main cursor-pointer rounded-md border-none p-2.5 text-base text-white transition-all delay-75 ease-in hover:bg-blue-950"
+          onClick={submitHandler}
+        >
+          ثبت آگهی
+        </button>
       )}
     </div>
   );

@@ -17,10 +17,10 @@ export const authOptions: AuthOptions = {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
-       async authorize(credentials) {
+      async authorize(credentials) {
         try {
           if (!credentials?.email || !credentials?.password) {
-            throw new Error("لطفا ایمیل و رمز عبور را وارد کنید");
+            throw new Error('لطفا ایمیل و رمز عبور را وارد کنید');
           }
 
           // اتصال به دیتابیس یکبار
@@ -28,12 +28,15 @@ export const authOptions: AuthOptions = {
 
           const user = await User.findOne({ email: credentials.email });
           if (!user) {
-            throw new Error("حساب کاربری یافت نشد. لطفا ثبت نام کنید");
+            throw new Error('حساب کاربری یافت نشد. لطفا ثبت نام کنید');
           }
 
-          const isValid = await verifyPassword(credentials.password, user.password);
+          const isValid = await verifyPassword(
+            credentials.password,
+            user.password
+          );
           if (!isValid) {
-            throw new Error("ایمیل یا رمز عبور اشتباه است");
+            throw new Error('ایمیل یا رمز عبور اشتباه است');
           }
 
           return {
@@ -41,11 +44,13 @@ export const authOptions: AuthOptions = {
             email: user.email,
           };
         } catch (error: unknown) {
-          console.error("Auth Error:", error instanceof Error ? error.message : error);
+          console.error(
+            'Auth Error:',
+            error instanceof Error ? error.message : error
+          );
           return null; // برگردوندن null یعنی لاگین ناموفق
         }
       },
-
     }),
   ],
 };

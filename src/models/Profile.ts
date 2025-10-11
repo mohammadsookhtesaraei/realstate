@@ -1,4 +1,4 @@
-import { Schema, model, models,Document,Types } from "mongoose";
+import { Document, Schema, Types, model, models } from 'mongoose';
 
 export interface IProfile extends Document {
   title: string;
@@ -8,7 +8,7 @@ export interface IProfile extends Document {
   realState: string;
   price: number;
   constructionDate: Date;
-  category: "villa" | "apartment" | "store" | "office";
+  category: 'villa' | 'apartment' | 'store' | 'office';
   amenities: string[];
   rules: string[];
   userId?: Types.ObjectId; // چون ممکنه همیشه مقدار نداشته باشه
@@ -16,7 +16,6 @@ export interface IProfile extends Document {
   createdAt?: Date; // چون timestamps فعاله
   updatedAt?: Date;
 }
-
 
 const profileSchema = new Schema<IProfile>(
   {
@@ -50,7 +49,7 @@ const profileSchema = new Schema<IProfile>(
     },
     category: {
       type: String,
-      enum: ["villa", "apartment", "store", "office"],
+      enum: ['villa', 'apartment', 'store', 'office'],
       required: true,
     },
     amenities: {
@@ -63,12 +62,12 @@ const profileSchema = new Schema<IProfile>(
     },
     userId: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
   },
   { timestamps: true }
 );
 
-const Profile = models.Profile || model<IProfile>("Profile", profileSchema);
+const Profile = models.Profile || model<IProfile>('Profile', profileSchema);
 
 export default Profile;
