@@ -18,7 +18,7 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
+    "baseUrl":".",
     "paths": {
       "@/public/*": ["public/*"],
       "@/app/*": ["src/app/*"],
@@ -26,7 +26,7 @@
       "@/models/*": ["src/models/*"],
       "@/layout/*": ["src/components/layout/*"],
       "@/module/*": ["src/components/module/*"],
-      "@/template/*": ["src/components/template/*"],
+      "@/templates/*": ["src/components/templates/*"],
       "@/providers/*": ["src/providers/*"],
       "@/api/*": ["src/app/api/*"],
       "@/constants/*": ["src/constants/*"]

@@ -24,11 +24,11 @@ const DashboardSideBar = ({
         </Link>
         <Link
           className="my-1.5 w-full font-normal"
-          href={'dashboard/my-profiles'}
+          href={'/dashboard/my-profiles'}
         >
           آگهی‌های‌من
         </Link>
-        <Link className="my-1.5 w-full font-normal" href={'dashboard/add'}>
+        <Link className="my-1.5 w-full font-normal" href={'/dashboard/add'}>
           ثبت‌آگهی
         </Link>
         <LogoutButton />
