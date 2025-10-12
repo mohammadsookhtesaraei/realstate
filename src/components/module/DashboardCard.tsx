@@ -16,8 +16,26 @@ interface DashboardCardProps {
 
 
 const DashboardCard = ({ data }: DashboardCardProps) => {
-  const editHandler=()=>{};
-  const deleteHandler=()=>{}
+  const router=useRouter();
+
+  const editHandler=()=>{
+    router.push(`/dashboard/my-profiles/${data._id}`)
+  };
+  const deleteHandler=async()=>{
+    const res=await fetch(`/api/profile/delete/${data._id}`,{
+      method:"DELETE",
+
+    });
+
+    const dat=await res.json();
+    if(dat.error){
+      toast.error(dat.error)
+    }else {
+      toast.success(dat.message);
+      router.refresh();
+    }
+
+  }
   return (
     <div className="flex border-2 border-icons rounded-2xl mb-5">
       <Card {...data} />

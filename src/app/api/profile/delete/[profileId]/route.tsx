@@ -1,60 +1,64 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-
-import { getServerSession } from 'next-auth';
-import { NextResponse } from 'next/server';
-
-import Profile from '@/models/Profile';
-import User from '@/models/User';
-import connectDB from '@/utils/connectDB';
+import { NextRequest, NextResponse } from "next/server";
+import connectDB from "@/utils/connectDB";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import Profile from "@/models/Profile";
+import User from "@/models/User";
+import mongoose from "mongoose";
 
 interface ContextType {
   params: {
-    id: string;
+    profileId: string;
   };
 }
-export async function DELETE(context: ContextType) {
+
+export async function DELETE(req: NextRequest, context: ContextType) {
   try {
     await connectDB();
-    const id = context.params.id;
+
+    const id = context.params.profileId;
 
     const session = await getServerSession(authOptions);
-    if (!session) {
+    if (!session?.user?.email) {
       return NextResponse.json(
-        { error: 'لطفا وارد حساب کاربری خود بشید' },
+        { error: "لطفا وارد حساب کاربری خود شوید" },
         { status: 401 }
       );
     }
 
-    const user = await User.findOne({ email: session.user?.email });
+    const user = await User.findOne({ email: session.user.email });
     if (!user) {
       return NextResponse.json(
-        { error: 'حساب کاربری یافت نشد' },
+        { error: "حساب کاربری یافت نشد" },
         { status: 404 }
       );
     }
 
-    const profile = await Profile.findOne({ _id: id });
-    if (!user._id.equals(profile.userId)) {
+    const profile = await Profile.findById(id);
+    if (!profile) {
       return NextResponse.json(
-        {
-          error: 'دستری شما به این آگهی محدود شده است',
-        },
+        { error: "آگهی موردنظر یافت نشد" },
+        { status: 404 }
+      );
+    }
+
+    if (!user._id.equals(profile.userId as mongoose.Types.ObjectId)) {
+      return NextResponse.json(
+        { error: "دستری شما به این آگهی محدود شده است" },
         { status: 403 }
       );
     }
 
     await Profile.deleteOne({ _id: id });
+
     return NextResponse.json(
-      { message: 'آگهی موردنظر حذف شد' },
+      { message: "آگهی موردنظر حذف شد" },
       { status: 200 }
     );
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'خطای ناشناخته';
-
-    console.error(message);
-
+  } catch (err) {
+    console.error(err);
     return NextResponse.json(
-      { error: 'مشکلی در سرور رخ داده است' },
+      { error: "مشکلی در سرور رخ داده است" },
       { status: 500 }
     );
   }

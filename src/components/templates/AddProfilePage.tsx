@@ -1,6 +1,6 @@
 'use client';
-
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState ,useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 import CustomDatePicker from '@/module/CustomDatePicker';
@@ -22,7 +22,14 @@ export interface ProfileDataType {
   amenities: never[];
 }
 
-const AddProfilePage = () => {
+
+interface AddProfilePageProps {
+  data:ProfileDataType
+}
+
+const AddProfilePage = ({data}:AddProfilePageProps) => {
+
+  const router=useRouter();
   const [profileData, setProfileData] = useState<ProfileDataType>({
     title: '',
     description: '',
@@ -35,6 +42,10 @@ const AddProfilePage = () => {
     rules: [],
     amenities: [],
   });
+
+    useEffect(() => {
+    if (data) setProfileData(data);
+  }, []);
 
   const [loading, setLoading] = useState(false);
 
@@ -54,10 +65,27 @@ const AddProfilePage = () => {
     }
   };
 
+    const editHandler = async () => {
+    setLoading(true);
+    const res = await fetch("/api/profile", {
+      method: "PATCH",
+      body: JSON.stringify(profileData),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    setLoading(false);
+    if (data.error) {
+      toast.error(data.error);
+    } else {
+      toast.success(data.message);
+      router.refresh();
+    }
+  };
+
   return (
     <div className="mb-[150px] flex flex-col">
       <h3 className="bg-dashboard text-blue-main mb-20 w-full rounded-lg px-4 py-2.5 text-2xl font-normal">
-        ثبت آگهی
+        {data ? "ویرایش آگهی" : "ثبت آگهی"}
       </h3>
       <TextInput
         title="عنوان آگهی"
@@ -116,14 +144,19 @@ const AddProfilePage = () => {
       <Toaster />
       {loading ? (
         <Loader />
-      ) : (
+      ) : data ? (
         <button
+          className="bg-blue-main cursor-pointer rounded-md border-none p-2.5 text-base text-white transition-all delay-75 ease-in hover:bg-blue-950"
+          onClick={editHandler}
+        >
+         ویرایش آگهی
+        </button>
+      ) : (  <button
           className="bg-blue-main cursor-pointer rounded-md border-none p-2.5 text-base text-white transition-all delay-75 ease-in hover:bg-blue-950"
           onClick={submitHandler}
         >
           ثبت آگهی
-        </button>
-      )}
+        </button>)}
     </div>
   );
 };
