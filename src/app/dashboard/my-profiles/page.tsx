@@ -21,7 +21,7 @@ const MyProfile = async () => {
     },
   ]);
 
-  console.log(user.profiles);
+
 
   return <MyProfilePage profiles={user.profiles} />;
 };
