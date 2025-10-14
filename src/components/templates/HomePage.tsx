@@ -1,18 +1,11 @@
+import CategoryCard from '@/module/CategoryCard';
+import { CategoriesType } from '@/constants/string';
 import { FaCity } from 'react-icons/fa';
 import { FiCircle } from 'react-icons/fi';
+import { services,categories,cities } from '@/constants/string';
 
 const HomePage = () => {
-  const services = ['اجاره', 'رهن', 'فروش', 'خرید'];
-  const cities = [
-    'تهران',
-    'سنندج',
-    'کرمانشاه',
-    'اهواز',
-    'مشهد',
-    'اصفهان',
-    'شیراز',
-    'خرم‌آباد',
-  ];
+  
   return (
     <div>
       <div className="my-[100px] flex items-center justify-center rounded-[10px] p-5 px-0">
@@ -32,6 +25,11 @@ const HomePage = () => {
             ))}
           </ul>
         </div>
+      </div>
+      <div className='flex flex-wrap justify-between my-[50px] px-0'>
+        {Object.keys(categories).map((item)=>(
+            <CategoryCard key={item} title={categories[item as keyof CategoriesType]} name={item}/>
+        ))}
       </div>
     </div>
   );
