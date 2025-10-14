@@ -21,8 +21,6 @@ const MyProfile = async () => {
     },
   ]);
 
-
-
   return <MyProfilePage profiles={user.profiles} />;
 };
 

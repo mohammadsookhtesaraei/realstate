@@ -84,14 +84,12 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-};
+}
 
-
-
-export async function PATCH(req:Request){
-  try{
+export async function PATCH(req: Request) {
+  try {
     await connectDB();
-     const {
+    const {
       _id,
       title,
       description,
@@ -103,15 +101,15 @@ export async function PATCH(req:Request){
       category,
       amenities,
       rules,
-    }= await req.json();
+    } = await req.json();
 
-    const session=await getServerSession(authOptions);
-        if (!session) {
+    const session = await getServerSession(authOptions);
+    if (!session) {
       return NextResponse.json(
         { error: 'لطفا وارد حساب کاربری خود بشید' },
         { status: 401 }
       );
-    };
+    }
 
     const user = await User.findOne({ email: session.user?.email });
     if (!user) {
@@ -119,10 +117,10 @@ export async function PATCH(req:Request){
         { error: 'حساب کاربری یافت نشد' },
         { status: 404 }
       );
-    };
+    }
 
-     if (
-      !_id||
+    if (
+      !_id ||
       !title ||
       !location ||
       !description ||
@@ -138,17 +136,17 @@ export async function PATCH(req:Request){
       );
     }
 
-    const profile=await Profile.findOne({_id});
-      if (!user._id.equals(profile.userId)) {
+    const profile = await Profile.findOne({ _id });
+    if (!user._id.equals(profile.userId)) {
       return NextResponse.json(
         {
-          error: "دستری شما به این آگهی محدود شده است",
+          error: 'دستری شما به این آگهی محدود شده است',
         },
         { status: 403 }
       );
-    };
+    }
 
-    profile.title=title;
+    profile.title = title;
     profile.description = description;
     profile.location = location;
     profile.phone = phone;
@@ -160,8 +158,7 @@ export async function PATCH(req:Request){
     profile.category = category;
     profile.save();
 
-    
-       return NextResponse.json(
+    return NextResponse.json(
       {
         message: 'آگهی با موفقیت ویرایش شد',
       },
@@ -169,10 +166,7 @@ export async function PATCH(req:Request){
         status: 200,
       }
     );
-
-    
-
-  }catch (error: unknown) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'خطای ناشناخته';
 
     console.error(message);

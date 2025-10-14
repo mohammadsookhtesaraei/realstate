@@ -1,6 +1,6 @@
-import Profile from "@/models/Profile";
-import AddProfilePage from "@/templates/AddProfilePage";
-import connectDB from "@/utils/connectDB";
+import Profile from '@/models/Profile';
+import AddProfilePage from '@/templates/AddProfilePage';
+import connectDB from '@/utils/connectDB';
 
 const Edit = async ({ params }: { params: Promise<{ profileId: string }> }) => {
   const { profileId } = await params; //  اینجا await لازمه

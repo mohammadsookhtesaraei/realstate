@@ -1,6 +1,7 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
-import { useState ,useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 import CustomDatePicker from '@/module/CustomDatePicker';
@@ -22,14 +23,12 @@ export interface ProfileDataType {
   amenities: never[];
 }
 
-
 interface AddProfilePageProps {
-  data:ProfileDataType
+  data: ProfileDataType;
 }
 
-const AddProfilePage = ({data}:AddProfilePageProps) => {
-
-  const router=useRouter();
+const AddProfilePage = ({ data }: AddProfilePageProps) => {
+  const router = useRouter();
   const [profileData, setProfileData] = useState<ProfileDataType>({
     title: '',
     description: '',
@@ -43,7 +42,7 @@ const AddProfilePage = ({data}:AddProfilePageProps) => {
     amenities: [],
   });
 
-    useEffect(() => {
+  useEffect(() => {
     if (data) setProfileData(data);
   }, []);
 
@@ -65,12 +64,12 @@ const AddProfilePage = ({data}:AddProfilePageProps) => {
     }
   };
 
-    const editHandler = async () => {
+  const editHandler = async () => {
     setLoading(true);
-    const res = await fetch("/api/profile", {
-      method: "PATCH",
+    const res = await fetch('/api/profile', {
+      method: 'PATCH',
       body: JSON.stringify(profileData),
-      headers: { "Content-Type": "application/json" },
+      headers: { 'Content-Type': 'application/json' },
     });
     const data = await res.json();
     setLoading(false);
@@ -85,7 +84,7 @@ const AddProfilePage = ({data}:AddProfilePageProps) => {
   return (
     <div className="mb-[150px] flex flex-col">
       <h3 className="bg-dashboard text-blue-main mb-20 w-full rounded-lg px-4 py-2.5 text-2xl font-normal">
-        {data ? "ویرایش آگهی" : "ثبت آگهی"}
+        {data ? 'ویرایش آگهی' : 'ثبت آگهی'}
       </h3>
       <TextInput
         title="عنوان آگهی"
@@ -149,14 +148,16 @@ const AddProfilePage = ({data}:AddProfilePageProps) => {
           className="bg-blue-main cursor-pointer rounded-md border-none p-2.5 text-base text-white transition-all delay-75 ease-in hover:bg-blue-950"
           onClick={editHandler}
         >
-         ویرایش آگهی
+          ویرایش آگهی
         </button>
-      ) : (  <button
+      ) : (
+        <button
           className="bg-blue-main cursor-pointer rounded-md border-none p-2.5 text-base text-white transition-all delay-75 ease-in hover:bg-blue-950"
           onClick={submitHandler}
         >
           ثبت آگهی
-        </button>)}
+        </button>
+      )}
     </div>
   );
 };

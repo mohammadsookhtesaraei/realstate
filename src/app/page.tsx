@@ -1,7 +1,7 @@
+import HomePage from "@/templates/HomePage";
+
 export default function Home() {
   return (
-    <div className="font-sans">
-      <h1>سلام</h1>
-    </div>
+   <HomePage/>
   );
 }
