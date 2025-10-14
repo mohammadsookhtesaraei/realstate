@@ -1,11 +1,11 @@
-import CategoryCard from '@/module/CategoryCard';
-import { CategoriesType } from '@/constants/string';
 import { FaCity } from 'react-icons/fa';
 import { FiCircle } from 'react-icons/fi';
-import { services,categories,cities } from '@/constants/string';
+
+import { CategoriesType } from '@/constants/string';
+import { categories, cities, services } from '@/constants/string';
+import CategoryCard from '@/module/CategoryCard';
 
 const HomePage = () => {
-  
   return (
     <div>
       <div className="my-[100px] flex items-center justify-center rounded-[10px] p-5 px-0">
@@ -26,10 +26,31 @@ const HomePage = () => {
           </ul>
         </div>
       </div>
-      <div className='flex flex-wrap justify-between my-[50px] px-0'>
-        {Object.keys(categories).map((item)=>(
-            <CategoryCard key={item} title={categories[item as keyof CategoriesType]} name={item}/>
+      <div className="my-[50px] flex flex-wrap justify-center px-0 sm:justify-between">
+        {Object.keys(categories).map((item) => (
+          <CategoryCard
+            key={item}
+            title={categories[item as keyof CategoriesType]}
+            name={item}
+          />
         ))}
+      </div>
+
+      <div className="my-[100px] px-0">
+        <h3 className="text-blue-main text-center text-[2rem] font-semibold">
+          شهرهای پر بازدید
+        </h3>
+        <ul className="my-[50px] flex flex-wrap justify-center sm:justify-between">
+          {cities.map((item) => (
+            <li
+              className="bg-banner my-2.5 flex w-[250px] items-center justify-center rounded-lg p-2.5 px-0 text-[1.2rem]"
+              key={item}
+            >
+              <FaCity />
+              <span className="ms-[15px] h-[30px] font-normal">{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
