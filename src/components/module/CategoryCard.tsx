@@ -9,7 +9,7 @@ interface CategoryCardProps {
 const CategoryCard = ({ title, name }: CategoryCardProps) => {
   return (
     <div className="shadow-form my-2.5 overflow-hidden rounded-2xl p-2.5 px-0 transition-all delay-75 ease-in hover:rotate-[-5deg]">
-      <Link href={`/buy-residential?category=${name}`}>
+      <Link href={`/buy-residential?categories=${name}`}>
         <Image
           src={`/images/${name}.png`}
           alt={title}

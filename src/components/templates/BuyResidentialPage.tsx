@@ -1,9 +1,10 @@
-import Card from '@/module/Card';
-import SideBar from '@/module/SideBar';
 import { FilterDataType } from '@/app/buy-residential/page';
 
+import Card from '@/module/Card';
+import SideBar from '@/module/SideBar';
+
 interface BuyResidentialProps {
-  data:  FilterDataType[];
+  data: FilterDataType[];
 }
 
 const BuyResidentialPage = ({ data }: BuyResidentialProps) => {
@@ -11,7 +12,7 @@ const BuyResidentialPage = ({ data }: BuyResidentialProps) => {
   return (
     <div className="mt-20 flex justify-between">
       <div className="shadow-form me-10 flex h-fit w-[220px] flex-col items-center rounded-xl px-[15px] py-[30px]">
-       <SideBar/>
+        <SideBar />
       </div>
       <div className="flex w-full flex-wrap justify-between">
         {data.length ? null : (

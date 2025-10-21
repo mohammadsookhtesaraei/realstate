@@ -1,4 +1,5 @@
 import BuyResidentialPage from '@/templates/BuyResidentialPage';
+
 export interface FilterDataType {
   _id: string;
   title: string;
@@ -17,7 +18,7 @@ export interface FilterDataType {
 }
 
 interface SearchParams {
-  category?: 'villa' | 'apartment' | 'store' | 'office';
+  categories?: 'villa' | 'apartment' | 'store' | 'office';
 }
 
 const BuyResidential = async ({
@@ -25,7 +26,7 @@ const BuyResidential = async ({
 }: {
   searchParams: SearchParams;
 }) => {
-  const { category  } = searchParams;
+  const { categories } = searchParams;
 
   const res = await fetch('http://localhost:3000/api/profile', {
     cache: 'no-store',
@@ -37,9 +38,8 @@ const BuyResidential = async ({
 
   let finalData: FilterDataType[] = data.data;
 
-
-  if (category) {
-    finalData = finalData.filter((item) => item.category === category);
+  if (categories) {
+    finalData = finalData.filter((item) => item.category === categories);
   }
 
   return <BuyResidentialPage data={finalData} />;

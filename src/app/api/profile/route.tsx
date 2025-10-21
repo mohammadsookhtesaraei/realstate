@@ -8,17 +8,13 @@ import Profile from '@/models/Profile';
 import User from '@/models/User';
 import connectDB from '@/utils/connectDB';
 
-export async function GET(){
-  try{
+export async function GET() {
+  try {
     connectDB();
 
-    const profile=await Profile.find().select("-userId");
-   return NextResponse.json(
-    {data:profile},
-    {status:200}
-   )
-
-  }catch (error: unknown) {
+    const profile = await Profile.find().select('-userId');
+    return NextResponse.json({ data: profile }, { status: 200 });
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'خطای ناشناخته';
 
     console.error(message);

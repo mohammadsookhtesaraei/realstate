@@ -5,20 +5,19 @@
   --foreground: #171717;
   --dashboard: #304ffe18;
   --icons: #304ffe58;
-  --bgSpan:#bbdefb;
-  --bg-text:rgba(219, 5, 5, 0.159);
+  --bgSpan: #bbdefb;
+  --bg-text: rgba(219, 5, 5, 0.159);
 }
 
 @theme inline {
   --color-blue-main: var(--background);
   --color-dashboard: var(--dashboard);
   --color-icons: var(--icons);
-  --color-banner:var(--bgSpan);
+  --color-banner: var(--bgSpan);
   --font-sans: var(--font-yekan);
   --shadow-form: #304ffe4a 0px 4px 15px;
   --scale-subimt: scale(1.05);
-  --color-red-text:var(--bg-text);
-
+  --color-red-text: var(--bg-text);
 }
 
 html,

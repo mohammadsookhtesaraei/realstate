@@ -1,9 +1,10 @@
+import { FilterDataType } from '@/app/buy-residential/page';
+
 import Link from 'next/link';
 import { BiLeftArrowAlt } from 'react-icons/bi';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 
 import { icons } from '@/constants/icons';
-import { FilterDataType } from '@/app/buy-residential/page';
 import { sp } from '@/utils/replaceNumber';
 
 const Card = ({ _id, category, title, location, price }: FilterDataType) => {
