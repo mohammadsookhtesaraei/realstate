@@ -11,6 +11,7 @@ import TextInput from '@/module/TextInput';
 import TextList from '@/module/TextList';
 
 export interface ProfileDataType {
+  
   title: string;
   description: string;
   location: string;

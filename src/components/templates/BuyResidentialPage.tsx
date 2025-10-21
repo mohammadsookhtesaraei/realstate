@@ -8,7 +8,7 @@ interface BuyResidentialProps {
 }
 
 const BuyResidentialPage = ({ data }: BuyResidentialProps) => {
-  console.log(data);
+
   return (
     <div className="mt-20 flex justify-between">
       <div className="shadow-form me-10 flex h-fit w-[220px] flex-col items-center rounded-xl px-[15px] py-[30px]">
