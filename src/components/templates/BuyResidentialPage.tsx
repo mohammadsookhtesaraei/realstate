@@ -1,15 +1,17 @@
 import Card from '@/module/Card';
-import { type Profile } from '@/templates/MyProfilePage';
+import SideBar from '@/module/SideBar';
+import { FilterDataType } from '@/app/buy-residential/page';
 
 interface BuyResidentialProps {
-  data: Profile[];
+  data:  FilterDataType[];
 }
 
 const BuyResidentialPage = ({ data }: BuyResidentialProps) => {
+  console.log(data);
   return (
     <div className="mt-20 flex justify-between">
       <div className="shadow-form me-10 flex h-fit w-[220px] flex-col items-center rounded-xl px-[15px] py-[30px]">
-        sidebar
+       <SideBar/>
       </div>
       <div className="flex w-full flex-wrap justify-between">
         {data.length ? null : (

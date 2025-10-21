@@ -3,10 +3,10 @@ import { BiLeftArrowAlt } from 'react-icons/bi';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 
 import { icons } from '@/constants/icons';
-import { type Profile } from '@/templates/MyProfilePage';
+import { FilterDataType } from '@/app/buy-residential/page';
 import { sp } from '@/utils/replaceNumber';
 
-const Card = ({ _id, category, title, location, price }: Profile) => {
+const Card = ({ _id, category, title, location, price }: FilterDataType) => {
   const Icon = icons[category];
 
   return (
