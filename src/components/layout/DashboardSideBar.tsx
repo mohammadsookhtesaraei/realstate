@@ -16,7 +16,7 @@ const DashboardSideBar = ({
     <div className="mt-20 flex justify-between">
       <div className="shadow-form ml-10 flex h-fit w-[220px] flex-col items-center rounded-xl px-4 py-8">
         <CgProfile className="text-blue-main text-5xl" />
-        {role === 'ADMIN' ? 'ادمین' : null}
+         <p>{role === 'ADMIN' ? 'ادمین' : null}</p>
         <p className="mt-5 font-normal text-gray-400">{email}</p>
         <span className="mb-8 h-px w-full bg-gray-400"></span>
         <Link className="my-1.5 w-full font-normal" href={'/dashboard'}>
@@ -32,7 +32,7 @@ const DashboardSideBar = ({
           ثبت‌آگهی
         </Link>
         <LogoutButton />
-        {role === 'ADMIN' ? <Link href="/admin">در انتظار تایید</Link> : null}
+        {role === 'ADMIN' ? <Link className="my-1.5 w-full font-normal" href="/admin">در انتظار تایید</Link> : null}
       </div>
       <div className="w-full">{children}</div>
     </div>

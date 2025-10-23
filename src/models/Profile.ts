@@ -64,6 +64,11 @@ const profileSchema = new Schema<IProfile>(
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
+
+    published:{
+      type:Boolean,
+      default:false
+    }
   },
   { timestamps: true }
 );
