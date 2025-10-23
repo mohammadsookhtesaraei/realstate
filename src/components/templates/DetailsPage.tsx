@@ -1,81 +1,94 @@
+import { AiOutlinePhone } from 'react-icons/ai';
+import { BiCalendarCheck } from 'react-icons/bi';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { SiHomebridge } from 'react-icons/si';
 
-
-import { SiHomebridge } from "react-icons/si";
-import { AiOutlinePhone } from "react-icons/ai";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { BiCalendarCheck } from "react-icons/bi";
-import { e2p, sp } from "@/utils/replaceNumber";
-import Title from "@/module/Title";
-import ItemList from "@/module/ItemList";
-import { icons } from "@/constants/icons";
-import { categories } from "@/constants/string";
-import ShareButton from "@/module/ShareButton";
+import { icons } from '@/constants/icons';
+import { categories } from '@/constants/string';
+import ItemList from '@/module/ItemList';
+import ShareButton from '@/module/ShareButton';
+import Title from '@/module/Title';
+import { e2p, sp } from '@/utils/replaceNumber';
 
 interface DetailsPageProps {
-  data:{
-  _id: string;
-  title: string;
-  description: string;
-  location: string;
-  phone: string;
-  realState: string;
-  price: number;
-  constructionDate: string; 
-  category: 'villa' | 'apartment' | 'store' | 'office';
-  amenities: string[];
-  rules: string[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;  
-    }
-};
-
-
-
-
-const DetailsPage = ({data:{title,location,description,amenities,rules,realState,phone,price,category,constructionDate}}:DetailsPageProps) => {
- const Icon=icons[category];
-  return (
-    <div className="flex mt-[60px]">
-        {/* main */}
-        <div className="w-full">
-            <h1 className="text-main-blue text-[1.3rem] font-normal mb-2.5">{title}</h1>
-            <span className="flex items-start h-4 mb-[50px] text-gray-400">
-                <HiOutlineLocationMarker className="text-lg me-1.5"/>
-                {location}
-            </span>
-            <Title>توضیحات</Title>
-            <p className="text-justify mb-[50px]">{description}</p>
-            <Title>امکانات رفاهی</Title>
-             <ItemList data={amenities}/>
-           <Title>قوانین</Title>
-          <ItemList data={rules} />
-        </div>
-        {/* sideBar */}
-        <div className="w-[250px] ms-[40px]">
-          <div className="shadow-form p-2.5 rounded-lg mb-5 flex flex-col items-center">
-              <SiHomebridge className="text-5xl text-blue-main mt-2.5 px-0 mb-5" />
-               <p className="text-[1.1rem] font-normal">املاک {realState}</p>
-            <span className="flex items-center text-gray-400 mt-5">
-            <AiOutlinePhone  className="text-2xl m-0 me-[5px] text-gray-400"/>
-            {e2p(phone)}
-          </span>
-          </div>
-          <ShareButton/>
-           <div className="shadow-form p-2.5 rounded-lg mb-5 flex flex-col items-center pt-5 px-0 pb-0">
-          <p className="flex items-center text-gray-400 mb-5 h-5">
-            <Icon className="text-2xl me-[5px] text-blue-main"/>
-            {categories[category]}
-          </p>
-          <p className="flex items-center text-gray-400 mb-5 h-5">{sp(price)} تومان</p>
-          <p className="flex items-center text-gray-400 mb-5 h-5">
-            <BiCalendarCheck className="text-2xl me-[5px] text-blue-main" />
-            {new Date(constructionDate).toLocaleDateString("fa-IR")}
-          </p>
-        </div>
-        </div>
-    </div>
-  )
+  data: {
+    _id: string;
+    title: string;
+    description: string;
+    location: string;
+    phone: string;
+    realState: string;
+    price: number;
+    constructionDate: string;
+    category: 'villa' | 'apartment' | 'store' | 'office';
+    amenities: string[];
+    rules: string[];
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  };
 }
 
-export default DetailsPage
+const DetailsPage = ({
+  data: {
+    title,
+    location,
+    description,
+    amenities,
+    rules,
+    realState,
+    phone,
+    price,
+    category,
+    constructionDate,
+  },
+}: DetailsPageProps) => {
+  const Icon = icons[category];
+  return (
+    <div className="mt-[60px] flex">
+      {/* main */}
+      <div className="w-full">
+        <h1 className="text-main-blue mb-2.5 text-[1.3rem] font-normal">
+          {title}
+        </h1>
+        <span className="mb-[50px] flex h-4 items-start text-gray-400">
+          <HiOutlineLocationMarker className="me-1.5 text-lg" />
+          {location}
+        </span>
+        <Title>توضیحات</Title>
+        <p className="mb-[50px] text-justify">{description}</p>
+        <Title>امکانات رفاهی</Title>
+        <ItemList data={amenities} />
+        <Title>قوانین</Title>
+        <ItemList data={rules} />
+      </div>
+      {/* sideBar */}
+      <div className="ms-[40px] w-[250px]">
+        <div className="shadow-form mb-5 flex flex-col items-center rounded-lg p-2.5">
+          <SiHomebridge className="text-blue-main mt-2.5 mb-5 px-0 text-5xl" />
+          <p className="text-[1.1rem] font-normal">املاک {realState}</p>
+          <span className="mt-5 flex items-center text-gray-400">
+            <AiOutlinePhone className="m-0 me-[5px] text-2xl text-gray-400" />
+            {e2p(phone)}
+          </span>
+        </div>
+        <ShareButton />
+        <div className="shadow-form mb-5 flex flex-col items-center rounded-lg p-2.5 px-0 pt-5 pb-0">
+          <p className="mb-5 flex h-5 items-center text-gray-400">
+            <Icon className="text-blue-main me-[5px] text-2xl" />
+            {categories[category]}
+          </p>
+          <p className="mb-5 flex h-5 items-center text-gray-400">
+            {sp(price)} تومان
+          </p>
+          <p className="mb-5 flex h-5 items-center text-gray-400">
+            <BiCalendarCheck className="text-blue-main me-[5px] text-2xl" />
+            {new Date(constructionDate).toLocaleDateString('fa-IR')}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DetailsPage;

@@ -12,7 +12,7 @@ export async function GET() {
   try {
     connectDB();
 
-    const profile = await Profile.find({published:true}).select('-userId');
+    const profile = await Profile.find({ published: true }).select('-userId');
     return NextResponse.json({ data: profile }, { status: 200 });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'خطای ناشناخته';

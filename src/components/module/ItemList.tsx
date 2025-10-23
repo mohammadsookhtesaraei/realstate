@@ -1,11 +1,8 @@
-
-const ItemList=({ data }:{
-    data:string[];
-})=> {
+const ItemList = ({ data }: { data: string[] }) => {
   return (
-    <div className="ps-5 mb-[50px]">
+    <div className="mb-[50px] ps-5">
       {data.length ? (
-        <ul className="list-disc marker:text-blue-main">
+        <ul className="marker:text-blue-main list-disc">
           {data.map((amenity, index) => (
             <li key={index}>{amenity}</li>
           ))}
@@ -15,6 +12,6 @@ const ItemList=({ data }:{
       )}
     </div>
   );
-}
+};
 
 export default ItemList;

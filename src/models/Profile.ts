@@ -65,10 +65,10 @@ const profileSchema = new Schema<IProfile>(
       ref: 'User',
     },
 
-    published:{
-      type:Boolean,
-      default:false
-    }
+    published: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

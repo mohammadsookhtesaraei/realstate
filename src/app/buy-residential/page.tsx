@@ -1,4 +1,6 @@
+import Profile from '@/models/Profile';
 import BuyResidentialPage from '@/templates/BuyResidentialPage';
+import connectDB from '@/utils/connectDB';
 
 export interface FilterDataType {
   _id: string;
@@ -46,3 +48,20 @@ const BuyResidential = async ({
 };
 
 export default BuyResidential;
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ profileId: string }>;
+}) => {
+  const { profileId } = await params;
+  await connectDB();
+  const profile = await Profile.findOne({ _id: profileId });
+
+  return {
+    title: profile.title,
+    description: profile.description,
+    authors: { name: profile.realState },
+    other: { mytag: 'test meta tag' },
+  };
+};
